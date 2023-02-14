@@ -1,8 +1,32 @@
+import { useEffect, useState } from "react";
+import { getPosts } from "../api";
 import PropTypes from "prop-types";
 import styles from "../styles/home.module.css";
-// import { Comment } from "../components";
 import Comment from "../components/Comment";
-const Home = ({ posts }) => {
+import Loader from "../components/Loader";
+
+const Home = () => {
+  const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState([]);
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      const response = await getPosts();
+      console.log("response", response);
+      setPosts("response", response);
+
+      if (response.success) {
+        setPosts(response.data.posts);
+      }
+      setLoading(false);
+    };
+    fetchPosts();
+  }, []);
+
+  if (loading) {
+    return <Loader />; // to display loader element return is mandatory
+  }
+
   console.log(posts);
   return (
     <div className={styles.postsList}>
