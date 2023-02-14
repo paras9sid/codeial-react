@@ -40,15 +40,17 @@ function App() {
   }
   return (
     <div className="App">
-      <Navbar />
       <Router>
+        {/* Navbar componenet should be wrapped inside Main Browser Router - otherwise Link to will not work */}
+      <Navbar />
         <Routes>
           {/* props posts should be an array not sring - it will throw props validation error */}
-          <Route exact path="/" element={<Home posts={posts} />}></Route>
-          <Route path="/login" element={<Login />} exact></Route>
-          <Route path="/about" element={<About />} exact></Route>
-          <Route path="/user/aadadsad" element={<UserInfo />} exact></Route>
-          <Route path="/user/aadadsad" element={<Page404 />} exact></Route>
+          <Route path="/" element={<Home posts={posts} />}></Route>
+          <Route path="/login" element={<Login />} ></Route>
+          <Route path="/about" element={<About />} ></Route>
+          <Route path="/user/aadadsad" element={<UserInfo />} ></Route>
+          {/* for route path 404 to be renderd prperly path='*' to be used */}
+          <Route path='*' element={<Page404 />} ></Route>
         </Routes>
       </Router>
     </div>
