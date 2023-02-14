@@ -3,7 +3,7 @@ import { getPosts } from "../api";
 import { Home } from "../pages";
 import Loader from "./Loader";
 import Navbar from "./Navbar";
-
+// import { Loader, Navbar } from './';
 function App() {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
