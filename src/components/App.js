@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { getPosts } from "../api";
 import { Home } from "../pages";
 import Loader from "./Loader";
+import Navbar from "./Navbar";
 
 function App() {
   const [posts, setPosts] = useState([]);
@@ -25,6 +26,7 @@ function App() {
   }
   return (
     <div className="App">
+      <Navbar />
       {/* props posts should be an array not sring - it will throw props validation error */}
       <Home posts={posts} />  
     </div>
