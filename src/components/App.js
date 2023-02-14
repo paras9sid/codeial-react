@@ -25,7 +25,8 @@ function App() {
   }
   return (
     <div className="App">
-      <Home posts={posts} />
+      {/* props posts should be an array not sring - it will throw props validation error */}
+      <Home posts={posts} />  
     </div>
   );
 }
