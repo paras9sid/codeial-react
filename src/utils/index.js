@@ -18,7 +18,7 @@ export const getItemInLocalSorage = (key) => {
   }
   
 
-  localStorage.getItem(key);
+  return localStorage.getItem(key);
 };
 
 

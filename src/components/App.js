@@ -5,6 +5,7 @@ import Loader from "./Loader";
 import Navbar from "./Navbar";
 import Login from "../pages/Login";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useAuth } from "../hooks";
 
 const About = () => {
   return <h1>About</h1>;
@@ -19,38 +20,42 @@ const Page404 = () => {
 };
 
 function App() {
-  const [posts, setPosts] = useState([]);
-  const [loading, setLoading] = useState(true);
+  // const [posts, setPosts] = useState([]);
+  // const [loading, setLoading] = useState(true);
+  const auth = useAuth();
 
-  useEffect(() => {
-    const fetchPosts = async () => {
-      const response = await getPosts();
-      console.log("response", response);
-      setPosts("response", response);
+  // useEffect(() => {
+  //   const fetchPosts = async () => {
+  //     const response = await getPosts();
+  //     console.log("response", response);
+  //     setPosts("response", response);
 
-      if (response.success) {
-        setPosts(response.data.posts);
-      }
-      setLoading(false);
-    };
-    fetchPosts();
-  }, []);
-  if (loading) {
+  //     if (response.success) {
+  //       setPosts(response.data.posts);
+  //     }
+  //     setLoading(false);
+  //   };
+  //   fetchPosts();
+  // }, []);
+  if (auth.loading) {
     return <Loader />; // to display loader element return is mandatory
   }
   return (
     <div className="App">
       <Router>
         {/* Navbar componenet should be wrapped inside Main Browser Router - otherwise Link to will not work */}
-      <Navbar />
+        <Navbar />
         <Routes>
           {/* props posts should be an array not sring - it will throw props validation error */}
-          <Route path="/" element={<Home posts={posts} />}></Route>
-          <Route path="/login" element={<Login />} ></Route>
-          <Route path="/about" element={<About />} ></Route>
-          <Route path="/user/aadadsad" element={<UserInfo />} ></Route>
+          {/* <Route path="/" element={<Home posts={posts} />}></Route> */}
+          {/* if abouve hooks comment out and useEfeect hook full also comment out */}
+          <Route path="/" element={<Home posts={[]} />}></Route>
+
+          <Route path="/login" element={<Login />}></Route>
+          <Route path="/about" element={<About />}></Route>
+          <Route path="/user/aadadsad" element={<UserInfo />}></Route>
           {/* for route path 404 to be renderd prperly path='*' to be used */}
-          <Route path='*' element={<Page404 />} ></Route>
+          <Route path="*" element={<Page404 />}></Route>
         </Routes>
       </Router>
     </div>
