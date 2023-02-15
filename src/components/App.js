@@ -1,12 +1,10 @@
-
 import { Home } from "../pages";
 import Loader from "./Loader";
 import Navbar from "./Navbar";
 import Login from "../pages/Login";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useAuth } from "../hooks";
-
-
+import Signup from "../pages/Signup";
 
 const Page404 = () => {
   return <h1>404 errorr</h1>;
@@ -29,6 +27,7 @@ function App() {
           <Route path="/" element={<Home />}></Route>
 
           <Route path="/login" element={<Login />}></Route>
+          <Route path="/register" element={<Signup />}></Route>
 
           {/* for route path 404 to be renderd prperly path='*' to be used */}
           <Route path="*" element={<Page404 />}></Route>

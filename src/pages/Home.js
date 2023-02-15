@@ -12,7 +12,6 @@ const Home = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       const response = await getPosts();
-      console.log("response", response);
       setPosts("response", response);
 
       if (response.success) {
@@ -27,7 +26,6 @@ const Home = () => {
     return <Loader />; // to display loader element return is mandatory
   }
 
-  console.log(posts);
   return (
     <div className={styles.postsList}>
       {posts.map((post) => (
